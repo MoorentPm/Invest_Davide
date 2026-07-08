@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moorent Pm — Dossier Opportunità BnB Firenze</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nero:#232323;
+    --grigio:#ACA5A5;
+    --rosa:#F3DFD9;
+    --bianco:#FFFFFF;
+    --nero-soft:#2e2b2b;
+    --cream:#FAF7F5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--nero);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'DM Mono',monospace;letter-spacing:0.02em;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:var(--nero);
+    color:var(--bianco);
+    padding:72px 8vw 88px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(243,223,217,0.10) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(243,223,217,0.08) 0%, transparent 45%),
+      radial-gradient(circle at 70% 90%, rgba(243,223,217,0.07) 0%, transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; max-width:980px;}
+  .brand-row{display:flex; align-items:center; gap:14px; margin-bottom:44px;}
+  .brand-mark{font-family:'DM Sans',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.14em;}
+  .brand-mark b{color:var(--bianco);}
+  .brand-mark span{color:var(--grigio); font-weight:400;}
+  .brand-divider{width:1px; height:16px; background:rgba(255,255,255,0.25);}
+  .brand-sub{font-size:0.75rem; color:var(--grigio); letter-spacing:0.08em; text-transform:uppercase;}
+
+  .hero-eyebrow{
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--rosa); margin-bottom:18px; font-weight:500;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-weight:500; line-height:1.08; margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic; color:var(--rosa);}
+  .hero-sub{
+    font-size:1.05rem; color:rgba(255,255,255,0.78); max-width:640px; font-weight:400;
+  }
+  .hero-meta{
+    display:flex; gap:36px; margin-top:40px; flex-wrap:wrap;
+  }
+  .hero-meta-item .num{font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--rosa); font-weight:500;}
+  .hero-meta-item .lab{font-size:0.72rem; color:var(--grigio); text-transform:uppercase; letter-spacing:0.08em; margin-top:2px;}
+
+  /* ===== SECTION WRAP ===== */
+  .section{padding:56px 8vw; max-width:1180px; margin:0 auto;}
+  .section-title{font-size:1.9rem; font-weight:500; margin-bottom:10px;}
+  .section-lead{color:#5c5555; max-width:680px; font-size:0.98rem; margin-bottom:34px;}
+
+  /* ===== ALERT / NOTA IMPORTANTE ===== */
+  .alert{
+    background:var(--nero); color:var(--bianco);
+    border-radius:2px; padding:36px 40px; margin:0 8vw 8px;
+    position:relative; border-left:3px solid var(--rosa);
+  }
+  .alert-tag{
+    font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--rosa); margin-bottom:14px; font-weight:500;
+  }
+  .alert h3{font-size:1.5rem; font-weight:500; margin-bottom:16px; color:var(--bianco);}
+  .alert ul{list-style:none;}
+  .alert li{
+    font-size:0.92rem; color:rgba(255,255,255,0.82);
+    padding:10px 0 10px 22px; position:relative;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .alert li:first-child{border-top:none;}
+  .alert li::before{
+    content:"—"; position:absolute; left:0; color:var(--rosa);
+  }
+  .alert li b{color:var(--bianco);}
+
+  /* ===== CARDS ===== */
+  .cards{display:flex; flex-direction:column; gap:22px; margin-top:8px;}
+  .card{
+    background:var(--bianco);
+    border:1px solid #ECE4E1;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .card-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding:26px 30px 22px; gap:20px; flex-wrap:wrap;
+    border-bottom:1px solid #F1EBE8;
+  }
+  .card-ref{
+    display:inline-block; font-family:'DM Mono',monospace; font-size:0.7rem;
+    letter-spacing:0.08em; color:var(--grigio); background:var(--cream);
+    padding:4px 10px; border-radius:20px; margin-bottom:10px;
+  }
+  .card-addr{font-size:1.5rem; font-family:'Cormorant Garamond',serif; font-weight:500;}
+  .card-zone{font-size:0.85rem; color:var(--grigio); margin-top:2px;}
+  .card-price-block{text-align:right;}
+  .card-price-lab{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grigio);}
+  .card-price{font-family:'Cormorant Garamond',serif; font-size:2.1rem; font-weight:500; color:var(--nero);}
+  .card-source{
+    display:inline-block; margin-top:6px; font-size:0.72rem; padding:4px 12px;
+    border-radius:20px; font-weight:500; letter-spacing:0.02em;
+  }
+  .src-agenzia{background:var(--rosa); color:var(--nero);}
+  .src-privato{background:var(--nero); color:var(--bianco);}
+
+  .card-body{padding:24px 30px 28px; display:grid; grid-template-columns:1.3fr 1fr; gap:32px;}
+  @media(max-width:760px){.card-body{grid-template-columns:1fr;}}
+
+  .fact-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 22px;}
+  .fact{border-bottom:1px dashed #EDE5E2; padding-bottom:8px;}
+  .fact-lab{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grigio);}
+  .fact-val{font-size:0.95rem; font-weight:500; margin-top:2px;}
+  .fact-val.missing{color:#B5504B; font-style:italic; font-weight:400;}
+
+  .notes-col{padding-left:0; border-left:none;}
+  @media(min-width:761px){.notes-col{padding-left:28px; border-left:1px solid #F1EBE8;}}
+  .notes-title{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grigio); margin-bottom:10px;}
+  .notes-list{list-style:none; font-size:0.88rem;}
+  .notes-list li{padding:6px 0 6px 16px; position:relative; color:#413c3c;}
+  .notes-list li::before{content:"·"; position:absolute; left:0; color:var(--rosa); font-weight:700; font-size:1.2rem; line-height:0.8;}
+  .stamp{
+    display:inline-block; margin-top:16px; font-size:0.68rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--grigio); border:1px solid #E4DAD5; padding:6px 12px;
+    border-radius:2px;
+  }
+  .card-links{padding:16px 30px 24px; background:var(--cream); display:flex; gap:10px; flex-wrap:wrap;}
+  .link-pill{
+    font-size:0.78rem; padding:8px 16px; border-radius:20px; background:var(--bianco);
+    border:1px solid #E4DAD5; display:inline-flex; align-items:center; gap:8px;
+    transition:all .15s ease;
+  }
+  .link-pill:hover{background:var(--nero); color:var(--bianco); border-color:var(--nero);}
+
+  /* ===== TABLE ===== */
+  .table-wrap{overflow-x:auto; border:1px solid #ECE4E1;}
+  table{width:100%; border-collapse:collapse; min-width:820px;}
+  th{
+    background:var(--nero); color:var(--bianco); font-weight:500; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.06em; padding:14px 16px; text-align:left;
+  }
+  td{padding:14px 16px; font-size:0.88rem; border-bottom:1px solid #F1EBE8;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#FCFAF9;}
+  td.num{font-family:'DM Mono',monospace; font-size:0.85rem;}
+  td.hi{color:#8A6A3E; font-weight:500;}
+  td.lo{color:#5C8A6A; font-weight:500;}
+
+  .caveat{
+    font-size:0.8rem; color:var(--grigio); margin-top:14px; padding-left:16px;
+    border-left:2px solid var(--rosa); font-style:italic;
+  }
+
+  /* ===== CTA / SELEZIONE ===== */
+  .cta{
+    background:var(--nero); color:var(--bianco); padding:64px 8vw; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .cta::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 50% 0%, rgba(243,223,217,0.08) 0%, transparent 55%);
+  }
+  .cta-inner{position:relative; max-width:640px; margin:0 auto;}
+  .cta h2{font-size:2.1rem; font-weight:500; margin-bottom:16px;}
+  .cta h2 em{color:var(--rosa); font-style:italic;}
+  .cta p{color:rgba(255,255,255,0.75); font-size:0.98rem; margin-bottom:34px;}
+  .choice-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:30px;}
+  .choice-chip{
+    border:1px solid rgba(255,255,255,0.25); padding:10px 20px; border-radius:24px;
+    font-size:0.85rem; color:var(--bianco);
+  }
+  .choice-chip b{color:var(--rosa);}
+
+  footer{
+    padding:28px 8vw; text-align:center; font-size:0.72rem; color:var(--grigio);
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="brand-row">
+        <div class="brand-mark"><b>MOORENT</b> <span>Pm</span></div>
+        <div class="brand-divider"></div>
+        <div class="brand-sub">Selettiva · Premium · Precisa</div>
+      </div>
+      <div class="hero-eyebrow">Dossier Riservato · Per Davide Torriero</div>
+      <h1>Cinque opportunità<br><em>BnB</em> a Firenze</h1>
+      <p class="hero-sub">Ricognizione dei sei annunci segnalati, con estrazione dei dati direttamente dagli annunci pubblici. Qui trovi tutte le informazioni disponibili, i punti da chiarire e, in fondo, lo spazio per indicarci quale modello preferisci approfondire.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><div class="num">5</div><div class="lab">Immobili distinti</div></div>
+        <div class="hero-meta-item"><div class="num">4/5</div><div class="lab">Stessa agenzia (Roma Immobili)</div></div>
+        <div class="hero-meta-item"><div class="num">€25k–90k</div><div class="lab">Range buonuscita</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ALERT ===== -->
+  <div style="height:44px"></div>
+  <div class="alert">
+    <div class="alert-tag">Da leggere prima del resto</div>
+    <h3>Quattro cose importanti emerse dall'analisi</h3>
+    <ul>
+      <li><b>Non sono acquisti immobiliari.</b> Tutti e sei gli annunci sono cessioni di attività "senza mura": si paga una buonuscita per subentrare in un contratto d'affitto (tipicamente 4+4) e nella gestione già avviata, non si acquista l'immobile. Il canone mensile resta un costo ricorrente per tutta la durata del contratto.</li>
+      <li><b>Due link sono lo stesso immobile.</b> L'annuncio Immobiliare.it 125021007 e l'annuncio Idealista 34270212 (Via Leonardo da Vinci 7, rif. agenzia "F 4") sono identici — stesso prezzo, stessa descrizione, stesso codice interno. È lo stesso immobile pubblicato su due portali, quindi le proposte reali distinte sono cinque, non sei.</li>
+      <li><b>Confermato: quasi tutti passano dalla stessa agenzia.</b> Quattro proposte su cinque sono gestite da <b>Roma Immobili</b> (agente Franca Stella). Una è di <b>Tommaso Papini Immobiliare</b> (Firenze). Una sola — Via dell'Agnolo — è di un <b>privato</b> senza intermediazione.</li>
+      <li><b>Nessun dato di rendimento reale è disponibile dagli annunci.</b> Fatturato storico, occupazione, ADR: nessuno di questi dati è pubblico. Come giustamente segnalato, servirà un appuntamento fisico per ottenerli — negli annunci compaiono solo accenni generici ("ottimi risultati dimostrabili", punteggio Booking, prenotazioni future confermate) senza numeri verificabili.</li>
+    </ul>
+  </div>
+
+  <!-- ===== SCHEDE ===== -->
+  <section class="section">
+    <h2 class="section-title">Le cinque proposte</h2>
+    <p class="section-lead">Ordinate per buonuscita crescente. Ogni scheda riporta solo ciò che è dichiarato nell'annuncio pubblico — dove un dato manca, è segnalato esplicitamente invece di essere stimato.</p>
+
+    <div class="cards">
+
+      <!-- FI-01 -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-ref">RIF. FI–01 · EX F4</span>
+            <div class="card-addr">Via Leonardo da Vinci, 7</div>
+            <div class="card-zone">Libertà–Savonarola / Campo di Marte, Firenze</div>
+          </div>
+          <div class="card-price-block">
+            <div class="card-price-lab">Buonuscita</div>
+            <div class="card-price">€ 25.000</div>
+            <span class="card-source src-agenzia">Roma Immobili</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="fact-grid">
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">90 m²</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">4 (2 camere soppalcate, 2 bagni)</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">8 (dichiarati "in scia")</div></div>
+            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">1° di 5</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 2.800 (condominio incluso)</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4, cauzione 3 mesi (€8.400)</div></div>
+          </div>
+          <div class="notes-col">
+            <div class="notes-title">Note dall'annuncio</div>
+            <ul class="notes-list">
+              <li>Punteggio Booking dichiarato: 8.0</li>
+              <li>Ristrutturato di recente, molto luminoso</li>
+              <li>Attività avviata da 2 anni</li>
+              <li>Classe energetica G</li>
+            </ul>
+            <span class="stamp">Cessione senza mura</span>
+          </div>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.immobiliare.it/annunci/125021007/" target="_blank">🏠 Immobiliare.it · 125021007</a>
+          <a class="link-pill" href="https://www.idealista.it/immobile/34270212/" target="_blank">🏠 Idealista.it · 34270212 (stesso immobile)</a>
+        </div>
+      </div>
+
+      <!-- FI-02 -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-ref">RIF. FI–02 · EX F5</span>
+            <div class="card-addr">Via Guelfa, 126</div>
+            <div class="card-zone">Duomo–San Marco, Centro, Firenze</div>
+          </div>
+          <div class="card-price-block">
+            <div class="card-price-lab">Buonuscita</div>
+            <div class="card-price">€ 60.000</div>
+            <span class="card-source src-agenzia">Roma Immobili</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="fact-grid">
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">150 m²</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">5 monolocali indipendenti, 5 bagni</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val missing">Non dichiarato — 5 letti matrimoniali</div></div>
+            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">1°</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 5.400 + €100 condominio</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4 ex novo, cauzione 2 mesi</div></div>
+          </div>
+          <div class="notes-col">
+            <div class="notes-title">Note dall'annuncio</div>
+            <ul class="notes-list">
+              <li>CIN e CIR già assegnati</li>
+              <li>Prenotazioni future già confermate per ~€40.000</li>
+              <li>Locazione turistica non imprenditoriale</li>
+              <li>Buon fatturato annuo (non quantificato)</li>
+            </ul>
+            <span class="stamp">Cessione senza mura</span>
+          </div>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.idealista.it/immobile/36020947/" target="_blank">🏠 Idealista.it · 36020947</a>
+        </div>
+      </div>
+
+      <!-- FI-03 -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-ref">RIF. FI–03 · EX F3</span>
+            <div class="card-addr">Borgo Pinti, 67 + Via San Gallo</div>
+            <div class="card-zone">Duomo–San Marco, Centro, Firenze — 2 appartamenti</div>
+          </div>
+          <div class="card-price-block">
+            <div class="card-price-lab">Buonuscita</div>
+            <div class="card-price">€ 82.000</div>
+            <span class="card-source src-agenzia">Roma Immobili</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="fact-grid">
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">105 m² totali (55+50)</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">2 appartamenti separati</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">9 (5 + 4)</div></div>
+            <div class="fact"><div class="fact-lab">Vie</div><div class="fact-val">San Gallo + Borgo Pinti</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 2.500 (€1.250 × 2 appartamenti)</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4, firmato feb. 2026, a società</div></div>
+          </div>
+          <div class="notes-col">
+            <div class="notes-title">Note dall'annuncio</div>
+            <ul class="notes-list">
+              <li>CIN e CIR già presenti su entrambi</li>
+              <li>Sito web professionale + gestionale prenotazioni inclusi</li>
+              <li>Attività "a pieno regime", prenotazioni future già confermate</li>
+              <li>Pacchetto più "chiavi in mano" tra le cinque proposte</li>
+            </ul>
+            <span class="stamp">Cessione senza mura</span>
+          </div>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.idealista.it/immobile/36023199/" target="_blank">🏠 Idealista.it · 36023199</a>
+        </div>
+      </div>
+
+      <!-- FI-04 -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-ref">RIF. FI–04</span>
+            <div class="card-addr">Via G. F. Mariti, 23B/1</div>
+            <div class="card-zone">Ponte di Mezzo–Circondaria, Firenze — vicino tramvia</div>
+          </div>
+          <div class="card-price-block">
+            <div class="card-price-lab">Buonuscita</div>
+            <div class="card-price">€ 88.000</div>
+            <span class="card-source src-agenzia">Tommaso Papini Immobiliare</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="fact-grid">
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">120 m² (bilocale+trilocale)</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">2 appartamenti, 2 bagni</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">10 (4 + 6)</div></div>
+            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">4° di 6, palazzo anni '70</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 3.050 (condominio + riscald. incl.)</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4, disponibile subito</div></div>
+          </div>
+          <div class="notes-col">
+            <div class="notes-title">Note dall'annuncio</div>
+            <ul class="notes-list">
+              <li>Recentemente ristrutturati, molto luminosi</li>
+              <li>Già su circuiti affitti turistici — "ottimi risultati" non quantificati</li>
+              <li>Unica proposta non gestita da Roma Immobili</li>
+              <li>Classe energetica G</li>
+            </ul>
+            <span class="stamp">Cessione senza mura</span>
+          </div>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.immobiliare.it/annunci/129609182/" target="_blank">🏠 Immobiliare.it · 129609182</a>
+        </div>
+      </div>
+
+      <!-- FI-05 -->
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <span class="card-ref">RIF. FI–05</span>
+            <div class="card-addr">Via dell'Agnolo, 89</div>
+            <div class="card-zone">Sant'Ambrogio, Firenze — 650 m dal Duomo</div>
+          </div>
+          <div class="card-price-block">
+            <div class="card-price-lab">Buonuscita</div>
+            <div class="card-price">€ 90.000</div>
+            <span class="card-source src-privato">Privato</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="fact-grid">
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">65 m² (68 m² comm.)</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">2 (2 camere matrimoniali, 2 bagni)</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val missing">Non dichiarato — presumibili 4</div></div>
+            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">3° di 3</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val missing">Non dichiarato nell'annuncio</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val missing">Non specificato</div></div>
+          </div>
+          <div class="notes-col">
+            <div class="notes-title">Note dall'annuncio</div>
+            <ul class="notes-list">
+              <li>Struttura "Mira Florence Apartment", attiva da 1 anno</li>
+              <li>Posizione molto centrale (650m dal Duomo)</li>
+              <li>Unica con classe energetica alta: A3</li>
+              <li>Buonuscita più alta ma nessun dato su canone/rendita</li>
+            </ul>
+            <span class="stamp">Cessione senza mura</span>
+          </div>
+        </div>
+        <div class="card-links">
+          <a class="link-pill" href="https://www.immobiliare.it/annunci/116659533/" target="_blank">🏠 Immobiliare.it · 116659533</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TABELLA COMPARATIVA ===== -->
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-title">Confronto rapido</h2>
+    <p class="section-lead">Indicatori calcolati sui soli dati dichiarati negli annunci — non sono stime di rendimento, solo rapporti aritmetici tra i numeri pubblici disponibili.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rif.</th>
+            <th>Indirizzo</th>
+            <th>Buonuscita</th>
+            <th>Posti letto</th>
+            <th>€/posto letto</th>
+            <th>Affitto/mese</th>
+            <th>€/posto letto (affitto)</th>
+            <th>Buonuscita in mesi d'affitto</th>
+            <th>CIN/CIR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">FI–01</td><td>Via L. da Vinci, 7</td>
+            <td class="num lo">€ 25.000</td><td class="num">8</td><td class="num">€ 3.125</td>
+            <td class="num">€ 2.800</td><td class="num">€ 350</td><td class="num">~8,9</td><td>Non dichiarato</td>
+          </tr>
+          <tr>
+            <td class="num">FI–02</td><td>Via Guelfa, 126</td>
+            <td class="num">€ 60.000</td><td class="num">~10*</td><td class="num">~€ 6.000</td>
+            <td class="num hi">€ 5.500</td><td class="num hi">~€ 550</td><td class="num">~10,9</td><td>Sì</td>
+          </tr>
+          <tr>
+            <td class="num">FI–03</td><td>Borgo Pinti + San Gallo</td>
+            <td class="num">€ 82.000</td><td class="num">9</td><td class="num hi">€ 9.111</td>
+            <td class="num lo">€ 2.500</td><td class="num lo">€ 278</td><td class="num hi">~32,8</td><td>Sì</td>
+          </tr>
+          <tr>
+            <td class="num">FI–04</td><td>Via G.F. Mariti, 23B/1</td>
+            <td class="num">€ 88.000</td><td class="num">10</td><td class="num">€ 8.800</td>
+            <td class="num">€ 3.050</td><td class="num">€ 305</td><td class="num hi">~28,8</td><td>Non dichiarato</td>
+          </tr>
+          <tr>
+            <td class="num">FI–05</td><td>Via dell'Agnolo, 89</td>
+            <td class="num hi">€ 90.000</td><td class="num">~4*</td><td class="num hi">~€ 22.500</td>
+            <td class="num missing">n.d.</td><td class="num missing">n.d.</td><td class="num missing">n.d.</td><td>Non dichiarato</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caveat">* Posti letto non dichiarati esplicitamente nell'annuncio, stimati dal numero di camere/unità descritte. FI–05 manca del dato sull'affitto mensile: da richiedere prima di qualunque valutazione, essendo l'unica proposta senza intermediazione di agenzia.</p>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Tocca a te, <em>Davide</em></h2>
+      <p>Indicaci quale proposta (o quali) preferisci approfondire. Una volta scelta, ci muoviamo per il sopralluogo fisico — l'unico modo per avere numeri reali di fatturato e occupazione — e ti presentiamo la nostra valutazione su quale rappresenti il miglior investimento.</p>
+      <div class="choice-row">
+        <div class="choice-chip"><b>FI–01</b> · Via L. da Vinci · €25k</div>
+        <div class="choice-chip"><b>FI–02</b> · Via Guelfa · €60k</div>
+        <div class="choice-chip"><b>FI–03</b> · Borgo Pinti · €82k</div>
+        <div class="choice-chip"><b>FI–04</b> · Via Mariti · €88k</div>
+        <div class="choice-chip"><b>FI–05</b> · Via dell'Agnolo · €90k</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>MOORENT PM · Dossier riservato · Firenze · Uso interno e per Davide Torriero</footer>
+
+</body>
+</html>
