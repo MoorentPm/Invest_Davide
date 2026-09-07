@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moorent Pm — Dossier Opportunità BnB Firenze</title>
+<title>Moorent Pm — Ricerca BnB Firenze · Aggiornamento Settembre 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -106,6 +106,14 @@
     border-radius:2px;
     overflow:hidden;
   }
+  .card-statusbar{
+    padding:11px 30px; font-size:0.72rem; letter-spacing:0.09em;
+    text-transform:uppercase; font-weight:500;
+    display:flex; align-items:center; gap:9px;
+  }
+  .card-statusbar .dot{width:7px; height:7px; border-radius:50%; background:currentColor; flex-shrink:0;}
+  .card-statusbar.is-nuova{background:var(--rosa); color:#7A4A3E;}
+  .card-statusbar.is-bloccata{background:#F5E7C9; color:#6B4E1E;}
   .card-head{
     display:flex; justify-content:space-between; align-items:flex-start;
     padding:26px 30px 22px; gap:20px; flex-wrap:wrap;
@@ -121,6 +129,7 @@
   .card-price-block{text-align:right;}
   .card-price-lab{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grigio);}
   .card-price{font-family:'Cormorant Garamond',serif; font-size:2.1rem; font-weight:500; color:var(--nero);}
+  .card-price-note{font-size:0.72rem; color:var(--grigio); margin-top:2px;}
   .card-source{
     display:inline-block; margin-top:6px; font-size:0.72rem; padding:4px 12px;
     border-radius:20px; font-weight:500; letter-spacing:0.02em;
@@ -156,9 +165,27 @@
   }
   .link-pill:hover{background:var(--nero); color:var(--bianco); border-color:var(--nero);}
 
+  /* ===== SCARTATI ===== */
+  .discard-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px; margin-top:8px;
+  }
+  .discard-card{
+    background:var(--bianco); border:1px solid #ECE4E1; border-radius:2px;
+    padding:20px 22px;
+  }
+  .discard-card .da{font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; line-height:1.2;}
+  .discard-card .db{font-size:0.78rem; color:var(--grigio); margin:3px 0 10px;}
+  .discard-card .dp{font-family:'DM Mono',monospace; font-size:0.8rem; color:#5c5555;}
+  .discard-card .dr{
+    font-size:0.85rem; color:#8A3B37; margin-top:12px; padding-top:11px;
+    border-top:1px solid #F1EBE8;
+  }
+  .discard-card .dr b{text-transform:uppercase; letter-spacing:0.06em; font-size:0.66rem; color:var(--grigio); display:block; margin-bottom:3px; font-weight:500;}
+
   /* ===== TABLE ===== */
   .table-wrap{overflow-x:auto; border:1px solid #ECE4E1;}
-  table{width:100%; border-collapse:collapse; min-width:820px;}
+  table{width:100%; border-collapse:collapse; min-width:860px;}
   th{
     background:var(--nero); color:var(--bianco); font-weight:500; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.06em; padding:14px 16px; text-align:left;
@@ -169,13 +196,19 @@
   td.num{font-family:'DM Mono',monospace; font-size:0.85rem;}
   td.hi{color:#8A6A3E; font-weight:500;}
   td.lo{color:#5C8A6A; font-weight:500;}
+  tr.row-out td{color:#9a9292;}
+  tr.row-out td.num{color:#9a9292;}
+  .st{font-size:0.72rem; font-weight:500; letter-spacing:0.03em; white-space:nowrap;}
+  .st.st-nuova{color:#7A4A3E;}
+  .st.st-bloccata{color:#6B4E1E;}
+  .st.st-out{color:#9a9292;}
 
   .caveat{
     font-size:0.8rem; color:var(--grigio); margin-top:14px; padding-left:16px;
     border-left:2px solid var(--rosa); font-style:italic;
   }
 
-  /* ===== CTA / SELEZIONE ===== */
+  /* ===== CTA / PROSSIMI PASSI ===== */
   .cta{
     background:var(--nero); color:var(--bianco); padding:64px 8vw; text-align:center;
     position:relative; overflow:hidden;
@@ -185,16 +218,16 @@
     position:absolute; inset:0;
     background-image:radial-gradient(circle at 50% 0%, rgba(243,223,217,0.08) 0%, transparent 55%);
   }
-  .cta-inner{position:relative; max-width:640px; margin:0 auto;}
+  .cta-inner{position:relative; max-width:680px; margin:0 auto;}
   .cta h2{font-size:2.1rem; font-weight:500; margin-bottom:16px;}
   .cta h2 em{color:var(--rosa); font-style:italic;}
   .cta p{color:rgba(255,255,255,0.75); font-size:0.98rem; margin-bottom:34px;}
-  .choice-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:30px;}
-  .choice-chip{
-    border:1px solid rgba(255,255,255,0.25); padding:10px 20px; border-radius:24px;
-    font-size:0.85rem; color:var(--bianco);
+  .step-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:30px; text-align:left;}
+  .step-chip{
+    border:1px solid rgba(255,255,255,0.22); padding:16px 20px; border-radius:4px;
+    font-size:0.85rem; color:rgba(255,255,255,0.82); max-width:300px;
   }
-  .choice-chip b{color:var(--rosa);}
+  .step-chip b{color:var(--rosa); display:block; margin-bottom:5px; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;}
 
   footer{
     padding:28px 8vw; text-align:center; font-size:0.72rem; color:var(--grigio);
@@ -212,13 +245,13 @@
         <div class="brand-divider"></div>
         <div class="brand-sub">Selettiva · Premium · Precisa</div>
       </div>
-      <div class="hero-eyebrow">Dossier Riservato · Per Davide Torriero</div>
-      <h1>Cinque opportunità<br><em>BnB</em> a Firenze</h1>
-      <p class="hero-sub">Ricognizione dei sei annunci segnalati, con estrazione dei dati direttamente dagli annunci pubblici. Qui trovi tutte le informazioni disponibili, i punti da chiarire e, in fondo, lo spazio per indicarci quale modello preferisci approfondire.</p>
+      <div class="hero-eyebrow">Dossier Riservato · Per Davide Torriero · Aggiornamento Settembre 2026</div>
+      <h1>Il punto sulla ricerca <em>BnB</em> a Firenze</h1>
+      <p class="hero-sub">Aggiornamento della ricognizione di luglio. Delle cinque proposte iniziali quattro sono state scartate dopo verifica; una resta aperta ma ferma in attesa dell'agenzia. A queste si aggiunge una nuova proposta molto interessante nel cuore dell'Oltrarno, di fronte a Palazzo Pitti.</p>
       <div class="hero-meta">
-        <div class="hero-meta-item"><div class="num">5</div><div class="lab">Immobili distinti</div></div>
-        <div class="hero-meta-item"><div class="num">4/5</div><div class="lab">Stessa agenzia (Roma Immobili)</div></div>
-        <div class="hero-meta-item"><div class="num">€25k–90k</div><div class="lab">Range buonuscita</div></div>
+        <div class="hero-meta-item"><div class="num">2</div><div class="lab">Piste ancora attive</div></div>
+        <div class="hero-meta-item"><div class="num">4</div><div class="lab">Scartate dopo verifica</div></div>
+        <div class="hero-meta-item"><div class="num mono">07·09·26</div><div class="lab">Ultimo aggiornamento</div></div>
       </div>
     </div>
   </section>
@@ -226,104 +259,68 @@
   <!-- ===== ALERT ===== -->
   <div style="height:44px"></div>
   <div class="alert">
-    <div class="alert-tag">Da leggere prima del resto</div>
-    <h3>Quattro cose importanti emerse dall'analisi</h3>
+    <div class="alert-tag">Il punto in breve</div>
+    <h3>Dove siamo arrivati</h3>
     <ul>
-      <li><b>Non sono acquisti immobiliari.</b> Tutti e sei gli annunci sono cessioni di attività "senza mura": si paga una buonuscita per subentrare in un contratto d'affitto (tipicamente 4+4) e nella gestione già avviata, non si acquista l'immobile. Il canone mensile resta un costo ricorrente per tutta la durata del contratto.</li>
-      <li><b>Due link sono lo stesso immobile.</b> L'annuncio Immobiliare.it 125021007 e l'annuncio Idealista 34270212 (Via Leonardo da Vinci 7, rif. agenzia "F 4") sono identici — stesso prezzo, stessa descrizione, stesso codice interno. È lo stesso immobile pubblicato su due portali, quindi le proposte reali distinte sono cinque, non sei.</li>
-      <li><b>Confermato: quasi tutti passano dalla stessa agenzia.</b> Quattro proposte su cinque sono gestite da <b>Roma Immobili</b> (agente Franca Stella). Una è di <b>Tommaso Papini Immobiliare</b> (Firenze). Una sola — Via dell'Agnolo — è di un <b>privato</b> senza intermediazione.</li>
-      <li><b>Nessun dato di rendimento reale è disponibile dagli annunci.</b> Fatturato storico, occupazione, ADR: nessuno di questi dati è pubblico. Come giustamente segnalato, servirà un appuntamento fisico per ottenerli — negli annunci compaiono solo accenni generici ("ottimi risultati dimostrabili", punteggio Booking, prenotazioni future confermate) senza numeri verificabili.</li>
+      <li><b>Quattro proposte su cinque sono state scartate.</b> Via Guelfa (canone €5.400/mese, troppo alto), Via Mariti (valutazione complessiva insufficiente), Via dell'Agnolo (ottenuti i dati di fatturato: altamente insufficienti), Via Leonardo da Vinci (dati non soddisfacenti). Il dettaglio è in fondo alla pagina.</li>
+      <li><b>Borgo Pinti + San Gallo resta la pista più solida sul piano economico</b> — il canone più basso per posto letto di tutta la selezione (€278/mese) e CIN/CIR già presenti su entrambi gli appartamenti. Ma è ferma: l'immobile è di Roma Immobili e da prima di Ferragosto non otteniamo una data per il sopralluogo. Li solleciti ogni ~3 giorni dal rientro dalle ferie, senza risposta utile finora.</li>
+      <li><b>Nuova proposta: cessione B&B di fronte a Palazzo Pitti.</b> Da privato, senza agenzia. CIN e CIR già assegnati, canone €3.000/mese, contratto 4+4. La reception di 20 m² è convertibile in camera, con margine per aumentare i posti letto. Buonuscita indicata sotto i €100.000, da trattare. In attesa dei dati di fatturato e occupazione dal proprietario, poi fissiamo il sopralluogo.</li>
+      <li><b>Su nessuna delle due piste attive abbiamo ancora numeri di rendimento verificati.</b> Come per la ricognizione di luglio, i dati reali di fatturato e occupazione si ottengono solo con l'incontro fisico: è esattamente lo sblocco che stiamo cercando su entrambe.</li>
     </ul>
   </div>
 
-  <!-- ===== SCHEDE ===== -->
+  <!-- ===== SCHEDE ATTIVE ===== -->
   <section class="section">
-    <h2 class="section-title">Le cinque proposte</h2>
-    <p class="section-lead">Ordinate per buonuscita crescente. Ogni scheda riporta solo ciò che è dichiarato nell'annuncio pubblico — dove un dato manca, è segnalato esplicitamente invece di essere stimato.</p>
+    <h2 class="section-title">Le piste ancora attive</h2>
+    <p class="section-lead">Due proposte in valutazione avanzata. Ogni scheda riporta solo ciò che è dichiarato nell'annuncio o comunicato dalla proprietà — dove un dato manca, è segnalato esplicitamente invece di essere stimato.</p>
 
     <div class="cards">
 
-      <!-- FI-01 -->
+      <!-- FI-06 · NUOVA -->
       <div class="card">
+        <div class="card-statusbar is-nuova"><span class="dot"></span> Nuova proposta · analisi fatturato in corso</div>
         <div class="card-head">
           <div>
-            <span class="card-ref">RIF. FI–01 · EX F4</span>
-            <div class="card-addr">Via Leonardo da Vinci, 7</div>
-            <div class="card-zone">Libertà–Savonarola / Campo di Marte, Firenze</div>
+            <span class="card-ref">RIF. FI–06</span>
+            <div class="card-addr">Di fronte a Palazzo Pitti</div>
+            <div class="card-zone">Oltrarno, Centro Storico, Firenze</div>
           </div>
           <div class="card-price-block">
             <div class="card-price-lab">Buonuscita</div>
-            <div class="card-price">€ 25.000</div>
-            <span class="card-source src-agenzia">Roma Immobili</span>
+            <div class="card-price">&lt; € 100.000</div>
+            <div class="card-price-note">da trattare — non ancora fissata</div>
+            <span class="card-source src-privato">Privato</span>
           </div>
         </div>
         <div class="card-body">
           <div class="fact-grid">
-            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">90 m²</div></div>
-            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">4 (2 camere soppalcate, 2 bagni)</div></div>
-            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">8 (dichiarati "in scia")</div></div>
-            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">1° di 5</div></div>
-            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 2.800 (condominio incluso)</div></div>
-            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4, cauzione 3 mesi (€8.400)</div></div>
+            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val missing">Non dichiarata</div></div>
+            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">1 camera quadrupla + 1 camera tripla + reception 20 m²</div></div>
+            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">7 (+2 potenziali convertendo la reception in camera)</div></div>
+            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val missing">Non dichiarato</div></div>
+            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 3.000</div></div>
+            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4</div></div>
           </div>
           <div class="notes-col">
-            <div class="notes-title">Note dall'annuncio</div>
+            <div class="notes-title">Note dalla proposta</div>
             <ul class="notes-list">
-              <li>Punteggio Booking dichiarato: 8.0</li>
-              <li>Ristrutturato di recente, molto luminoso</li>
-              <li>Attività avviata da 2 anni</li>
-              <li>Classe energetica G</li>
+              <li>CIN e CIR già entrambi assegnati</li>
+              <li>Cessione da privato, senza intermediazione di agenzia</li>
+              <li>Reception di 20 m² convertibile in camera singola → margine per alzare i posti letto</li>
+              <li>Posizione di pregio: Oltrarno, fronte Palazzo Pitti</li>
+              <li class="serif" style="color:#8A3B37;font-style:italic">Fatturato e occupazione: richiesti al proprietario, non ancora ricevuti</li>
             </ul>
             <span class="stamp">Cessione senza mura</span>
           </div>
         </div>
         <div class="card-links">
-          <a class="link-pill" href="https://www.immobiliare.it/annunci/125021007/" target="_blank">🏠 Immobiliare.it · 125021007</a>
-          <a class="link-pill" href="https://www.idealista.it/immobile/34270212/" target="_blank">🏠 Idealista.it · 34270212 (stesso immobile)</a>
+          <a class="link-pill" href="https://www.facebook.com/groups/651909310052635/posts/1281422407101319/" target="_blank">📄 Annuncio Facebook · gruppo cessioni B&B</a>
         </div>
       </div>
 
-      <!-- FI-02 -->
+      <!-- FI-03 · BLOCCATA -->
       <div class="card">
-        <div class="card-head">
-          <div>
-            <span class="card-ref">RIF. FI–02 · EX F5</span>
-            <div class="card-addr">Via Guelfa, 126</div>
-            <div class="card-zone">Duomo–San Marco, Centro, Firenze</div>
-          </div>
-          <div class="card-price-block">
-            <div class="card-price-lab">Buonuscita</div>
-            <div class="card-price">€ 60.000</div>
-            <span class="card-source src-agenzia">Roma Immobili</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="fact-grid">
-            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">150 m²</div></div>
-            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">5 monolocali indipendenti, 5 bagni</div></div>
-            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val missing">Non dichiarato — 5 letti matrimoniali</div></div>
-            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">1°</div></div>
-            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 5.400 + €100 condominio</div></div>
-            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4 ex novo, cauzione 2 mesi</div></div>
-          </div>
-          <div class="notes-col">
-            <div class="notes-title">Note dall'annuncio</div>
-            <ul class="notes-list">
-              <li>CIN e CIR già assegnati</li>
-              <li>Prenotazioni future già confermate per ~€40.000</li>
-              <li>Locazione turistica non imprenditoriale</li>
-              <li>Buon fatturato annuo (non quantificato)</li>
-            </ul>
-            <span class="stamp">Cessione senza mura</span>
-          </div>
-        </div>
-        <div class="card-links">
-          <a class="link-pill" href="https://www.idealista.it/immobile/36020947/" target="_blank">🏠 Idealista.it · 36020947</a>
-        </div>
-      </div>
-
-      <!-- FI-03 -->
-      <div class="card">
+        <div class="card-statusbar is-bloccata"><span class="dot"></span> Aperta ma ferma · in attesa di data per il sopralluogo (Roma Immobili)</div>
         <div class="card-head">
           <div>
             <span class="card-ref">RIF. FI–03 · EX F3</span>
@@ -351,7 +348,8 @@
               <li>CIN e CIR già presenti su entrambi</li>
               <li>Sito web professionale + gestionale prenotazioni inclusi</li>
               <li>Attività "a pieno regime", prenotazioni future già confermate</li>
-              <li>Pacchetto più "chiavi in mano" tra le cinque proposte</li>
+              <li>Pacchetto più "chiavi in mano" tra le proposte viste</li>
+              <li class="serif" style="color:#6B4E1E;font-style:italic">Appuntamento richiesto da prima di Ferragosto — nessuna disponibilità dall'agenzia; solleciti ogni ~3 giorni dal rientro</li>
             </ul>
             <span class="stamp">Cessione senza mura</span>
           </div>
@@ -361,91 +359,13 @@
         </div>
       </div>
 
-      <!-- FI-04 -->
-      <div class="card">
-        <div class="card-head">
-          <div>
-            <span class="card-ref">RIF. FI–04</span>
-            <div class="card-addr">Via G. F. Mariti, 23B/1</div>
-            <div class="card-zone">Ponte di Mezzo–Circondaria, Firenze — vicino tramvia</div>
-          </div>
-          <div class="card-price-block">
-            <div class="card-price-lab">Buonuscita</div>
-            <div class="card-price">€ 88.000</div>
-            <span class="card-source src-agenzia">Tommaso Papini Immobiliare</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="fact-grid">
-            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">120 m² (bilocale+trilocale)</div></div>
-            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">2 appartamenti, 2 bagni</div></div>
-            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val">10 (4 + 6)</div></div>
-            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">4° di 6, palazzo anni '70</div></div>
-            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val">€ 3.050 (condominio + riscald. incl.)</div></div>
-            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val">4+4, disponibile subito</div></div>
-          </div>
-          <div class="notes-col">
-            <div class="notes-title">Note dall'annuncio</div>
-            <ul class="notes-list">
-              <li>Recentemente ristrutturati, molto luminosi</li>
-              <li>Già su circuiti affitti turistici — "ottimi risultati" non quantificati</li>
-              <li>Unica proposta non gestita da Roma Immobili</li>
-              <li>Classe energetica G</li>
-            </ul>
-            <span class="stamp">Cessione senza mura</span>
-          </div>
-        </div>
-        <div class="card-links">
-          <a class="link-pill" href="https://www.immobiliare.it/annunci/129609182/" target="_blank">🏠 Immobiliare.it · 129609182</a>
-        </div>
-      </div>
-
-      <!-- FI-05 -->
-      <div class="card">
-        <div class="card-head">
-          <div>
-            <span class="card-ref">RIF. FI–05</span>
-            <div class="card-addr">Via dell'Agnolo, 89</div>
-            <div class="card-zone">Sant'Ambrogio, Firenze — 650 m dal Duomo</div>
-          </div>
-          <div class="card-price-block">
-            <div class="card-price-lab">Buonuscita</div>
-            <div class="card-price">€ 90.000</div>
-            <span class="card-source src-privato">Privato</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="fact-grid">
-            <div class="fact"><div class="fact-lab">Superficie</div><div class="fact-val">65 m² (68 m² comm.)</div></div>
-            <div class="fact"><div class="fact-lab">Locali</div><div class="fact-val">2 (2 camere matrimoniali, 2 bagni)</div></div>
-            <div class="fact"><div class="fact-lab">Posti letto</div><div class="fact-val missing">Non dichiarato — presumibili 4</div></div>
-            <div class="fact"><div class="fact-lab">Piano</div><div class="fact-val">3° di 3</div></div>
-            <div class="fact"><div class="fact-lab">Affitto mensile</div><div class="fact-val missing">Non dichiarato nell'annuncio</div></div>
-            <div class="fact"><div class="fact-lab">Contratto</div><div class="fact-val missing">Non specificato</div></div>
-          </div>
-          <div class="notes-col">
-            <div class="notes-title">Note dall'annuncio</div>
-            <ul class="notes-list">
-              <li>Struttura "Mira Florence Apartment", attiva da 1 anno</li>
-              <li>Posizione molto centrale (650m dal Duomo)</li>
-              <li>Unica con classe energetica alta: A3</li>
-              <li>Buonuscita più alta ma nessun dato su canone/rendita</li>
-            </ul>
-            <span class="stamp">Cessione senza mura</span>
-          </div>
-        </div>
-        <div class="card-links">
-          <a class="link-pill" href="https://www.immobiliare.it/annunci/116659533/" target="_blank">🏠 Immobiliare.it · 116659533</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- ===== TABELLA COMPARATIVA ===== -->
+  <!-- ===== TABELLA STATO ===== -->
   <section class="section" style="padding-top:0;">
-    <h2 class="section-title">Confronto rapido</h2>
-    <p class="section-lead">Indicatori calcolati sui soli dati dichiarati negli annunci — non sono stime di rendimento, solo rapporti aritmetici tra i numeri pubblici disponibili.</p>
+    <h2 class="section-title">Stato della ricerca a colpo d'occhio</h2>
+    <p class="section-lead">Tutte le proposte esaminate, con lo stato aggiornato. Gli indicatori sono rapporti aritmetici sui soli dati dichiarati — non sono stime di rendimento.</p>
     <div class="table-wrap">
       <table>
         <thead>
@@ -453,62 +373,100 @@
             <th>Rif.</th>
             <th>Indirizzo</th>
             <th>Buonuscita</th>
+            <th>Canone/mese</th>
             <th>Posti letto</th>
-            <th>€/posto letto</th>
-            <th>Affitto/mese</th>
-            <th>€/posto letto (affitto)</th>
-            <th>Buonuscita in mesi d'affitto</th>
-            <th>CIN/CIR</th>
+            <th>Fonte</th>
+            <th>Stato</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="num">FI–01</td><td>Via L. da Vinci, 7</td>
-            <td class="num lo">€ 25.000</td><td class="num">8</td><td class="num">€ 3.125</td>
-            <td class="num">€ 2.800</td><td class="num">€ 350</td><td class="num">~8,9</td><td>Non dichiarato</td>
-          </tr>
-          <tr>
-            <td class="num">FI–02</td><td>Via Guelfa, 126</td>
-            <td class="num">€ 60.000</td><td class="num">~10*</td><td class="num">~€ 6.000</td>
-            <td class="num hi">€ 5.500</td><td class="num hi">~€ 550</td><td class="num">~10,9</td><td>Sì</td>
+            <td class="num">FI–06</td><td>Fronte Palazzo Pitti</td>
+            <td class="num">&lt; € 100.000*</td><td class="num">€ 3.000</td><td class="num">7 (+2 pot.)</td>
+            <td>Privato</td><td><span class="st st-nuova">● Nuova — analisi fatturato in corso</span></td>
           </tr>
           <tr>
             <td class="num">FI–03</td><td>Borgo Pinti + San Gallo</td>
-            <td class="num">€ 82.000</td><td class="num">9</td><td class="num hi">€ 9.111</td>
-            <td class="num lo">€ 2.500</td><td class="num lo">€ 278</td><td class="num hi">~32,8</td><td>Sì</td>
+            <td class="num">€ 82.000</td><td class="num lo">€ 2.500</td><td class="num">9</td>
+            <td>Roma Immobili</td><td><span class="st st-bloccata">● Aperta — in attesa appuntamento agenzia</span></td>
           </tr>
-          <tr>
-            <td class="num">FI–04</td><td>Via G.F. Mariti, 23B/1</td>
-            <td class="num">€ 88.000</td><td class="num">10</td><td class="num">€ 8.800</td>
-            <td class="num">€ 3.050</td><td class="num">€ 305</td><td class="num hi">~28,8</td><td>Non dichiarato</td>
-          </tr>
-          <tr>
+          <tr class="row-out">
             <td class="num">FI–05</td><td>Via dell'Agnolo, 89</td>
-            <td class="num hi">€ 90.000</td><td class="num">~4*</td><td class="num hi">~€ 22.500</td>
-            <td class="num missing">n.d.</td><td class="num missing">n.d.</td><td class="num missing">n.d.</td><td>Non dichiarato</td>
+            <td class="num">€ 90.000</td><td class="num">n.d.</td><td class="num">~4</td>
+            <td>Privato</td><td><span class="st st-out">○ Scartata — fatturato insufficiente</span></td>
+          </tr>
+          <tr class="row-out">
+            <td class="num">FI–04</td><td>Via G.F. Mariti, 23B/1</td>
+            <td class="num">€ 88.000</td><td class="num">€ 3.050</td><td class="num">10</td>
+            <td>Tommaso Papini</td><td><span class="st st-out">○ Scartata — valutazione insufficiente</span></td>
+          </tr>
+          <tr class="row-out">
+            <td class="num">FI–02</td><td>Via Guelfa, 126</td>
+            <td class="num">€ 60.000</td><td class="num">€ 5.400</td><td class="num">~10</td>
+            <td>Roma Immobili</td><td><span class="st st-out">○ Scartata — canone troppo alto</span></td>
+          </tr>
+          <tr class="row-out">
+            <td class="num">FI–01</td><td>Via L. da Vinci, 7</td>
+            <td class="num">€ 25.000</td><td class="num">€ 2.800</td><td class="num">8</td>
+            <td>Roma Immobili</td><td><span class="st st-out">○ Scartata — dati non soddisfacenti</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="caveat">* Posti letto non dichiarati esplicitamente nell'annuncio, stimati dal numero di camere/unità descritte. FI–05 manca del dato sull'affitto mensile: da richiedere prima di qualunque valutazione, essendo l'unica proposta senza intermediazione di agenzia.</p>
+    <p class="caveat">* FI–06: buonuscita indicata dal proprietario come "sotto i 100.000 €", da trattare e non ancora fissata. Fatturato e occupazione ancora da acquisire su entrambe le piste attive: nessun dato di rendimento è al momento verificato.</p>
   </section>
 
-  <!-- ===== CTA ===== -->
+  <!-- ===== SCARTATI ===== -->
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-title">Le quattro proposte scartate</h2>
+    <p class="section-lead">Restano qui per memoria del lavoro fatto. Ognuna è stata esclusa per un motivo preciso, non per mancanza di follow-up.</p>
+    <div class="discard-grid">
+
+      <div class="discard-card">
+        <div class="da">Via Guelfa, 126</div>
+        <div class="db">Duomo–San Marco, Centro · Roma Immobili</div>
+        <div class="dp">Buonuscita € 60.000 · canone € 5.400/mese</div>
+        <div class="dr"><b>Motivo dello scarto</b>Canone mensile troppo alto per la sostenibilità dell'operazione.</div>
+      </div>
+
+      <div class="discard-card">
+        <div class="da">Via G. F. Mariti, 23B/1</div>
+        <div class="db">Ponte di Mezzo–Circondaria, vicino tramvia · Tommaso Papini</div>
+        <div class="dp">Buonuscita € 88.000 · canone € 3.050/mese</div>
+        <div class="dr"><b>Motivo dello scarto</b>Valutazione complessiva già giudicata insufficiente.</div>
+      </div>
+
+      <div class="discard-card">
+        <div class="da">Via dell'Agnolo, 89</div>
+        <div class="db">Sant'Ambrogio, 650 m dal Duomo · Privato</div>
+        <div class="dp">Buonuscita € 90.000 · canone n.d.</div>
+        <div class="dr"><b>Motivo dello scarto</b>Ottenuti i dati di fatturato: altamente insufficienti.</div>
+      </div>
+
+      <div class="discard-card">
+        <div class="da">Via Leonardo da Vinci, 7</div>
+        <div class="db">Libertà–Savonarola / Campo di Marte · Roma Immobili</div>
+        <div class="dp">Buonuscita € 25.000 · canone € 2.800/mese</div>
+        <div class="dr"><b>Motivo dello scarto</b>Dati non soddisfacenti.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROSSIMI PASSI ===== -->
   <section class="cta">
     <div class="cta-inner">
-      <h2>Tocca a te, <em>Davide</em></h2>
-      <p>Indicaci quale proposta (o quali) preferisci approfondire. Una volta scelta, ci muoviamo per il sopralluogo fisico — l'unico modo per avere numeri reali di fatturato e occupazione — e ti presentiamo la nostra valutazione su quale rappresenti il miglior investimento.</p>
-      <div class="choice-row">
-        <div class="choice-chip"><b>FI–01</b> · Via L. da Vinci · €25k</div>
-        <div class="choice-chip"><b>FI–02</b> · Via Guelfa · €60k</div>
-        <div class="choice-chip"><b>FI–03</b> · Borgo Pinti · €82k</div>
-        <div class="choice-chip"><b>FI–04</b> · Via Mariti · €88k</div>
-        <div class="choice-chip"><b>FI–05</b> · Via dell'Agnolo · €90k</div>
+      <h2>Cosa succede <em>adesso</em></h2>
+      <p>Il lavoro è concentrato sullo sbloccare il sopralluogo su una delle due piste attive: è l'unico modo per avere numeri reali di fatturato e occupazione e passare a una valutazione vera.</p>
+      <div class="step-row">
+        <div class="step-chip"><b>Borgo Pinti</b>Sollecito continuo a Roma Immobili — ogni ~3 giorni — fino a ottenere una data per il sopralluogo.</div>
+        <div class="step-chip"><b>Fronte Pitti</b>Ottenere fatturato e occupazione dal proprietario, poi fissare il sopralluogo in presenza.</div>
+        <div class="step-chip"><b>Al primo sopralluogo utile</b>Moorent porta i numeri reali e la valutazione su rendimento e sostenibilità.</div>
       </div>
     </div>
   </section>
 
-  <footer>MOORENT PM · Dossier riservato · Firenze · Uso interno e per Davide Torriero</footer>
+  <footer>MOORENT PM · Dossier riservato · Firenze · Aggiornamento 7 settembre 2026 · Uso interno e per Davide Torriero</footer>
 
 </body>
 </html>
